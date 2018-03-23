@@ -1,0 +1,76 @@
+---
+title: "Assignment6"
+author: "Junpei Xiao"
+date: "2018/03/23"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+library(jpeg)
+library(tidyverse)
+library(magick)
+
+```
+
+### Road Map about city of Bude
+
+```{r,echo=FALSE, fig.height=8,fig.width=8}
+route_map <- readRDS("route_map.rds", refhook = NULL)
+print(route_map)
+```
+
+### Water map about city of Bude
+
+```{r,echo=FALSE,fig.height=8,fig.width=8}
+route_map <- readRDS("route_map.rds", refhook = NULL)
+print(route_map)
+```
+
+### gallery of Bude: Crooklet Beach 
+
+```{r echo=FALSE,fig.height=8,fig.width=8}
+
+Crooklet_Beach <- image_read('https://www.visitbude.info/wp-content/uploads/2016/07/Crooklets-Beach-Huts-1.jpg')%>%
+  image_scale("800x") %>%
+  image_annotate("Crooklet Beach", size = 20, color = "white")
+plot(Crooklet_Beach)
+
+```
+
+### Bude Crooklet Beach 
+
+```{r echo=FALSE,fig.height=8,fig.width=8}
+
+Summerleaze_Beach <- image_read('http://www.visitbude.info/wp-content/uploads/2015/04/Summerleaze-Decking-3.jpg')%>%
+  image_scale("600x") %>%
+  image_annotate("Summerleaze Beach", size = 20, color = "white")
+
+plot(Summerleaze_Beach)
+
+```
+
+### Bude North Cornwall Cricket Club
+
+```{r echo=FALSE,fig.height=8,fig.width=8}
+
+Bude_North_Cornwall_Cricket_Club <- image_read('https://i.pinimg.com/originals/42/21/20/42212062d2dbf181dc1b1eaa160dce53.jpg')%>%
+  image_scale("600x") %>%
+  image_annotate("Bude North Cornwall Cricket Club", size = 20, color = "white")
+
+plot(Bude_North_Cornwall_Cricket_Club)
+
+```
+
+### The Barrel at Bude
+```{r echo=FALSE,fig.height=8,fig.width=8}
+
+The_Barrel_at_Bude <- image_read('http://www.micropubassociation.co.uk/wp-content/uploads/barrel-800x800.jpg')%>%
+  image_scale("600x") %>%
+  image_annotate("The Barrel at Bude", size = 20, color = "white")
+
+plot(The_Barrel_at_Bude)
+
+```
+

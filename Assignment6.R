@@ -69,4 +69,32 @@ The_Barrel_at_Bude <- image_read('http://www.micropubassociation.co.uk/wp-conten
 
 print(The_Barrel_at_Bude)
 
+# ---------------------------------------------
+# Adding Hotels 
+# ---------------------------------------------
+
+# Tommy Jacks Beach Hotel
+tommyjacks <- geocode("Crooklets Beach Cafe, Crooklets, Bude EX23 8NF, UK")
+
+# Edgcumbe Hotel
+edgecumbe <- geocode("Edgecumbe Hotel, 19 Summerleaze Cres, Bude EX23 8HJ, UK")
+
+#Add these hotels to maps of Bude
+
+#road map
+ggmap(map) + 
+  geom_point(aes(x=lon,y=lat), data=df4) + 
+  geom_point(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat))) +
+  geom_text(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat), label = "Edgecumbe Hotel", hjust=1, vjust=1)) +
+  geom_point(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat))) +
+  geom_text(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat), label = "Tommy Jacks Beach Hotel", hjust=1, vjust=1))
+
+
+# watercolor map 
+ggmap(map3)+
+  geom_point(aes(x=lon,y=lat),data=df4)+
+  geom_point(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat))) +
+  geom_text(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat), label = "Edgecumbe Hotel", hjust=1, vjust=1)) +
+  geom_point(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat))) +
+  geom_text(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat), label = "Tommy Jacks Beach Hotel", hjust=1, vjust=1))
 

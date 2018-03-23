@@ -16,6 +16,7 @@ df_lon <- c(-4.553962,-4.551349,-4.552814,-4.543023)
 df_lat <- c(50.83587,50.83054,50.83347,50.83007)
 
 ### Create Labels for location
+Location_name <- c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )
 #Location_name <- c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )
 
 df4 <- data.frame("lon" = df_lon, "lat" = df_lat)
@@ -33,7 +34,7 @@ map2<-ggmap(map)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)+
-    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =3,hjust=-0.1)
+    geom_label(map,aes(label = Location_name),size =3,hjust=-0.1)
 plot(map2)
 
 saveRDS(map2,file="route_map.rds")
@@ -43,7 +44,7 @@ map4<-ggmap(map3)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)+
-    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =2.5,hjust=-0.1)
+    geom_label(map3,aes(label = Location_name ),size =2.5,hjust=-0.1)
 plot(map4)
 
 saveRDS(map4,file="water_map.rds")

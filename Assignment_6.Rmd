@@ -16,16 +16,16 @@ library(magick)
 
 ### Road Map about city of Bude
 
-```{r,echo=FALSE, fig.height=8,fig.width=8}
+```{r,echo=FALSE,fig.height=8,fig.width=8}
 route_map <- readRDS("route_map.rds", refhook = NULL)
-print(route_map)
+route_map
 ```
 
 ### Water map about city of Bude
 
 ```{r,echo=FALSE,fig.height=8,fig.width=8}
-route_map <- readRDS("route_map.rds", refhook = NULL)
-print(route_map)
+water_map <- readRDS("water_map.rds", refhook = NULL)
+water_map
 ```
 
 ### gallery of Bude: Crooklet Beach 

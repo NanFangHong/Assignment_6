@@ -16,8 +16,8 @@ df_lon <- c(-4.553962,-4.551349,-4.552814,-4.543023)
 df_lat <- c(50.83587,50.83054,50.83347,50.83007)
 
 ### Create Labels for location
-Location_name <- c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )
 #Location_name <- c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )
+
 
 df4 <- data.frame("lon" = df_lon, "lat" = df_lat)
 
@@ -27,14 +27,15 @@ df_lat_2 <- c(50.83347,50.83007)
 df5 <- data.frame("lon" = df_lon_1, "lat" = df_lat_2)
 
 
+### The geocode of Bude : c(lon=-4.543678,lat=50.82664)
+### use gecode function may cause some error. So, I prefer use the code directly
 
-
-map <-get_googlemap("Bude",markers = df4,path=df5,zoom = 14)
+map <-get_googlemap(center = c(lon=-4.543678,lat=50.82664),markers = df4,path=df5,zoom = 14)
 map2<-ggmap(map)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)+
-    geom_label(map,aes(label = Location_name),size =3,hjust=-0.1)
+    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =3,hjust=-0.1)
 plot(map2)
 
 saveRDS(map2,file="route_map.rds")
@@ -44,7 +45,7 @@ map4<-ggmap(map3)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)+
-    geom_label(map3,aes(label = Location_name ),size =2.5,hjust=-0.1)
+    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =2.5,hjust=-0.1)
 plot(map4)
 
 saveRDS(map4,file="water_map.rds")
@@ -74,33 +75,3 @@ The_Barrel_at_Bude <- image_read('http://www.micropubassociation.co.uk/wp-conten
   image_annotate("The Barrel at Bude", size = 20, color = "white")
 
 print(The_Barrel_at_Bude)
-
-# ---------------------------------------------
-# Adding Hotels 
-# ---------------------------------------------
-
-# Tommy Jacks Beach Hotel
-tommyjacks <- geocode("Crooklets Beach Cafe, Crooklets, Bude EX23 8NF, UK")
-
-# Edgcumbe Hotel
-edgecumbe <- geocode("Edgecumbe Hotel, 19 Summerleaze Cres, Bude EX23 8HJ, UK")
-
-#Add these hotels to maps of Bude
-
-#road map
-ggmap(map) + 
-  geom_point(aes(x=lon,y=lat), data=df4) + 
-  geom_point(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat))) +
-  geom_text(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat), label = "Edgecumbe Hotel", hjust=1, vjust=1)) +
-  geom_point(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat))) +
-  geom_text(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat), label = "Tommy Jacks Beach Hotel", hjust=1, vjust=1))
-
-
-# watercolor map 
-ggmap(map3)+
-  geom_point(aes(x=lon,y=lat),data=df4)+
-  geom_point(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat))) +
-  geom_text(aes(x = as.numeric(edgecumbe$lon), y = as.numeric(edgecumbe$lat), label = "Edgecumbe Hotel", hjust=1, vjust=1)) +
-  geom_point(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat))) +
-  geom_text(aes(x = as.numeric(tommyjacks$lon), y = as.numeric(tommyjacks$lat), label = "Tommy Jacks Beach Hotel", hjust=1, vjust=1))
-

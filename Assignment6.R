@@ -15,6 +15,9 @@ library(magick)
 df_lon <- c(-4.553962,-4.551349,-4.552814,-4.543023)
 df_lat <- c(50.83587,50.83054,50.83347,50.83007)
 
+### Create Labels for location
+#Location_name <- c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )
+
 df4 <- data.frame("lon" = df_lon, "lat" = df_lat)
 
 df_lon_1 <- c(-4.552814,-4.543023)
@@ -29,19 +32,21 @@ map <-get_googlemap("Bude",markers = df4,path=df5,zoom = 14)
 map2<-ggmap(map)+
     geom_point(
     aes(x=lon,y=lat),
-    data=df4, size = 4)
+    data=df4, size = 4)+
+    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =3,hjust=-0.1)
 plot(map2)
 
-#saveRDS(map2,file="route_map.rds")
+saveRDS(map2,file="route_map.rds")
 
 map3 <-get_map(df4,source="stamen",zoom = 14,maptype = "watercolor")
 map4<-ggmap(map3)+
     geom_point(
     aes(x=lon,y=lat),
-    data=df4, size = 4)
+    data=df4, size = 4)+
+    geom_label(data = df4,aes(label = c("Crooklet Beach","Summerleaze Beach","Bude North Cornwall Cricket Club","The Barrel at Bude" )),size =2.5,hjust=-0.1)
 plot(map4)
 
-#saveRDS(map4,file="water_map.rds")
+saveRDS(map4,file="water_map.rds")
 
 ### Get some picture about this city online 
   

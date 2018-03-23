@@ -30,6 +30,7 @@ map2<-ggmap(map)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)
+plot(map2)
 
 #saveRDS(map2,file="route_map.rds")
 
@@ -38,6 +39,7 @@ map4<-ggmap(map3)+
     geom_point(
     aes(x=lon,y=lat),
     data=df4, size = 4)
+plot(map4)
 
 #saveRDS(map4,file="water_map.rds")
 
